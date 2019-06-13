@@ -1,0 +1,1 @@
+The self.directory object of type dict was added to the group class because it provides O(1) look up, when having to search through multiple subgroups under 1 group, using the name of the group as a key to search the value. This is going to use the group's self.name as the key. 
