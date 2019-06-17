@@ -1,0 +1,7 @@
+To create the tuple containing each character in a sentence, with respective frequencies is O(n). The built in sort function in python is O (n log(n)).
+
+To draw the tree, it takes O(n) because we need to pop 2 values at a time then post process from there. To encode the sentence, a dict() was created such that looking up for the code for each character in that sentence only requires O(n).
+
+To encode, each bit goes through a for loop to determine if it's still just going to another node or to a leaf. In the implementation for this project, it's O(n).
+
+I am quite sure there's more efficient ways of doing this but this is my best attempt to date, to get everything to encode and decode. 

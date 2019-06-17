@@ -1,0 +1,3 @@
+A list was used to easily append a *.c file when we walk through the directories. While we only input a folder, the number of operations depend on how many directories and files are present on the root directory chosen. O(n), where n is number of directories or files, in this case, because a for loop processes all the files and directories listed from the root and only appends a file when it's *.c.
+
+A folder was designated for problem 2 since it has the use cases in that said directory. Notice that for ../junk, no such folder exists. So it should notify the user that it is so. 
