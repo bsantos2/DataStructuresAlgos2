@@ -73,7 +73,8 @@ class Double_Linked_List:
 
 class LRU_Cache(Double_Linked_List):
     # Begin Hash Map
-    def __init__(self, capacity):
+    def __init__(self, capacity = 5):
+        # Put default capacity of 5 in case it was not set first
         # Initialize class variables
         self.lru_cache = dict()
         self.capacity = capacity
@@ -156,3 +157,6 @@ print(our_cache2.get("gordo"))
 #This demonstrates that previously discarded least recently used keys can come back
 #In this case, the first value for key = "apple" was discarded but
 #2nd instance is back as it was filled again unto here.
+
+our_cache3 = LRU_Cache()
+our_cache3.set("hi",1)
