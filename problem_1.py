@@ -104,7 +104,7 @@ class LRU_Cache(Double_Linked_List):
         self.key_storage.append(key)
 
 
-our_cache = LRU_Cache(5)
+our_cache = LRU_Cache()
 
 #Test Case 1
 our_cache.set(1, 2)
@@ -115,6 +115,7 @@ print(our_cache.get(1))  # returns 1
 print(our_cache.get(2))  # returns 2
 print(our_cache.get(3))  # return -1
 #Expected Output = {2, 1, 4}
+#Also, if LRU_Cache input is blank then 5 is the default size, as instructed in project.
 
 #Test Case 2
 our_cache1 = LRU_Cache(5)
@@ -157,6 +158,3 @@ print(our_cache2.get("gordo"))
 #This demonstrates that previously discarded least recently used keys can come back
 #In this case, the first value for key = "apple" was discarded but
 #2nd instance is back as it was filled again unto here.
-
-our_cache3 = LRU_Cache()
-our_cache3.set("hi",1)

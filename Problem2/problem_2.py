@@ -1,20 +1,25 @@
 import os
 
-def find_files(root):
+def find_files(root = ".", extension = ".c"):
+    #Default extension is blank, it follows instruction of ".c" per project
+    #Root default is "." in case user forgets input
     subdirectories = list()
     c_files = list()
-    filtered_files = recursive_os_walk(root, subdirectories, c_files)
+    y = extension.find(".")
+    if y == -1:
+        extension = "." + extension
+    filtered_files = recursive_os_walk(root, subdirectories, c_files, extension)
     print(filtered_files)
 
-def recursive_os_walk(root, subdirectories, c_files):
+def recursive_os_walk(root, subdirectories, c_files, extension):
     if os.path.exists(root):
         fileList = os.listdir(root)
         for x in fileList:
             x = root + "/" + x
             if os.path.isdir(x):
                 subdirectories.append(x)
-                recursive_os_walk(x, subdirectories, c_files)
-            elif x.endswith(".c"):
+                recursive_os_walk(x, subdirectories, c_files, extension)
+            elif x.endswith(extension):
                 c_files.append(x)
         return c_files
     else:
@@ -41,3 +46,10 @@ print("Test Case #3")
 x = (find_files("../junk"))
 print(x)
 #Since the path does not exist, It returns "Directory does not exist"
+
+#Test Case 4
+print("Test Case #4")
+x = (find_files())
+print(x)
+#Since the path does not exist, It returns "Directory does not exist"
+#Should be same as test case # 1
