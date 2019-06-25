@@ -1,3 +1,7 @@
-A list was used to easily append a *.c file when we walk through the directories. While we only input a folder, the number of operations depend on how many directories and files are present on the root directory chosen. O(n), where n is number of directories or files, in this case, because a for loop processes all the files and directories listed from the root and only appends a file when it's *.c.
+A list was used to easily append a *.c file when we walk through the directories. While we only input a folder, the number of operations depend on how many directories and files are present on the root directory chosen. 
+
+Since recursion was used to traverse the directory, and the base case was when there's no longer anything to traverse to because we reached only files and there's no other subdirectories to explore, time wise, the walk is O(n), where n is number of subdirectories and files. Note that directories are included because a directory makes another call to the self/function. 
+
+The amount of space it occupies is O(n) where n includes directories and files. As we walk towards the files, the depth of recursion is when it can only find files and no directory can be used to call the function. The program then examines each file if it's *.c or not. Along the way, it had to examine the directories and files of previous upper directories etc. Since it had to examine all these files/folder, then it's O(n).
 
 A folder was designated for problem 2 since it has the use cases in that said directory. Notice that for ../junk, no such folder exists. So it should notify the user that it is so. 
