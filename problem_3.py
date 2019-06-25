@@ -65,8 +65,12 @@ def encode_tree(node, code_list = "", code_table = dict()):
     if node is None:
         return
     elif type(node.value) is tuple:#node.value.left is None and node.value.right is None:
-        code_table[node.value[0]] = code_list
-        return
+        if code_list == "":
+            code_table[node.value[0]] = "0"
+            return code_table
+        else:
+            code_table[node.value[0]] = code_list
+            return
     if node.value.left is not None:
         code_list += "0"
         encode_tree(node.value.left, code_list)
@@ -82,38 +86,59 @@ def encode_tree(node, code_list = "", code_table = dict()):
 def huffman_encoding(data):
     #Generate sorted char lies
     char_list = create_sorted_char_list(data)
-    #Generate the huffman tree
-    tree = draw_tree(char_list)
+    if len(char_list) == 0:
+        return "0", Double_Node((None, None)), []  # returning dummy value of 0 so it won't crash
+    elif len(char_list) == 1:
+        tree = Double_Node(tuple(char_list))
+        tree.head = tree
+    else:
+        #Generate the huffman tree
+        tree = draw_tree(char_list)
     #Create a dict containing bit stream per character
-    code_table = encode_tree(tree.head)
-    #Generate bit stream for entire sentence
-    data_code = ""
-    for x in data:
-        data_code += code_table[x]
-    return data_code, tree, code_table
+    if tree is not None:
+        code_table = encode_tree(tree.head)
+        if len(code_table) == 1:
+            data_code = code_table[char_list[0]] #for the case of only one letter, repeated or not
+        else:
+            #Generate bit stream for entire sentence
+            data_code = ""
+            for x in data:
+                data_code += code_table[x]
+        return data_code, tree, code_table
+
 
 def huffman_decoding(data,tree):
     word = ""
     node = tree.head
     dummy = ""
-    for x in data:
-        if x == "0":
-            if type(node.value.left.value) is tuple:  # node.value.left is None and node.value.right is None
-                word += node.value.left.value[0]
-                node = tree.head
-                dummy = ""
-            else:
-                node = node.value.left
-                dummy += x
-        elif x == "1":
-            if type(node.value.right.value) is tuple:  # node.value.left is None and node.value.right is None
-                word += node.value.right.value[0]
-                node = tree.head
-                dummy = ""
-            else:
-                node = node.value.right
-                dummy += x
-    return word
+    if data == "0": #on encode portion, if nothing is detected, it will output only "0"
+        decode_me = tree.value
+        if decode_me[0] is None:
+            return word
+        else:
+            decode_me = decode_me[0]
+            for x in range(0, decode_me[1]):
+                word += decode_me[0]
+        return word
+    else:
+        for x in data:
+            if x == "0":
+                if type(node.value.left.value) is tuple:  # node.value.left is None and node.value.right is None
+                    word += node.value.left.value[0]
+                    node = tree.head
+                    dummy = ""
+                else:
+                    node = node.value.left
+                    dummy += x
+            elif x == "1":
+                if type(node.value.right.value) is tuple:  # node.value.left is None and node.value.right is None
+                    word += node.value.right.value[0]
+                    node = tree.head
+                    dummy = ""
+                else:
+                    node = node.value.right
+                    dummy += x
+        return word
 
 if __name__ == "__main__":
     codes = list()
@@ -122,7 +147,8 @@ if __name__ == "__main__":
     For the following strings below, the decoded sequence should reflect/mirror the same strings.
     Also, since Huffman requires binary tree, all my examples at least have 2 distinct letters. 
     '''
-    codes.append("Hi")
+    codes.append("")
+    codes.append("aaaaa")
     codes.append("The bird is the word")
     codes.append("In Python, the tendency is usually that one would use a non-fixed size list (that is to say items can be appended/removed to it dynamically). If you followed this, there would be no need to allocate a fixed-size collection ahead of time and fill it in with empty values. Rather, as you get or create strings, you simply add them to the list. When it comes time to remove values, you simply remove the appropriate value from the string. I would imagine you can probably use this technique for this.")
 
