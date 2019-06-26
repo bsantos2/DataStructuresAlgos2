@@ -1,7 +1,8 @@
-To create the tuple containing each character in a sentence, with respective frequencies is O(n). The built in sort function in python is O (n log(n)).
 
-To draw the tree, it takes O(n) because we need to pop 2 values at a time then post process from there. To encode the sentence, a dict() was created such that looking up for the code for each character in that sentence only requires O(n).
+To create the tuple containing the characters in the string with respective frequencies, O(n) for time (for loop, per char) and space (worst case, as maybe each string has unique character). Sorting and saving the tuple to list is O(n log n) for python.
 
-To encode, each bit goes through a for loop to determine if it's still just going to another node or to a leaf. In the implementation for this project, it's O(n).
+The tree input is equal to the length of the char_list/number of elements in a tuple for frequency per char. To build the tree, recursion was done, element per element so with time it's O(n). The space complexity is O(k), k > n, the number of chars. K will include the nodes that store the frequencies that were added up to make the tree. 
 
-I am quite sure there's more efficient ways of doing this but this is my best attempt to date, to get everything to encode and decode. 
+To encode the tree, for time, it's O(n log(k)), where n is the number of chars from said string and log(k) relates to the step to reach from head to leaf. Each char process involves traversing the tree to find the right code per char. The space is O(n), because every char has a corresponding bit stream stored to a dictionary.
+
+To decode the tree, each bit in the stream is processed 1 by 1 in the for loop to determine which direction to go in the Huffman tree, so it's O(n) in time. The space occupied is same as the tree, O(k).

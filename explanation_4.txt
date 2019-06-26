@@ -1,1 +1,3 @@
-The self.directory object of type dict was added to the group class because it provides O(1) look up, when having to search through multiple subgroups under 1 group, using the name of the group as a key to search the value. This is going to use the group's self.name as the key. 
+To build the directory, it requires O(1) because to append group, subgroup, etc, that's what it takes for the python function for appending. For space complexity, it is O(n) as the tree would be composed of the group and its users, subgroups and its users, etc etc. n is the number of all this data.
+
+Recursion is used to find the user. To traverse the tree, at its worst, it searches for each group under group desired. For each group it searches its users. This alludes to breadth first search where it scans each node per level of the tree. Thus it's O(n)

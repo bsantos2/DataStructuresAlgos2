@@ -59,7 +59,7 @@ class Listing:
 
 blockchainz = Listing()
 blockchainz.append("Pet #1's name is Freddie.")
-blockchainz.append("Saket loves Freddie.")
+blockchainz.append("Mercury Freddie.")
 blockchainz.append("Hi")
 print(str(blockchainz))
 #For these three examples, Data will be respective string

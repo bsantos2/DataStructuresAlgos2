@@ -1,2 +1,7 @@
-The search, at worst case, is O(n). This search function is used in remove duplicates function, thus O(n). I didn't want to use dict() function, to demonstrate that I can traverse through the nodes. Append is about O(n), as we need to go from head through the nodes, to eventually arrive at the end of the node, to append the list. All this used for Union.
-In the case of intersection, it's more complicated. Because we have node1 for llist_1 and node2 for llist_2, where there were two for loops + nested loops, O(m*n) is used, where llist_1 is for m size and llist_2 is for n size.
+
+
+To start, there are no duplicates allowed in creating the sets after doing either union or intersection. Each is cleaned up, not by using dict(), which would have been easy. A search function is used in remove duplicates function, thus O(n). 
+
+For union, all items from the two lists are appended to the new list. To append, it takes O(1) as new item is added immediately to the tail, making it efficient. To clean up duplicates, a mentioned above is O(n). The space occupied is O(n), where n is the number of items from both lists. At worst case, each item is unique in both lists, so it will have to include all of them.
+
+For intersection, is rather more complicated. Cleaning up duplicates is O(n). Append is O(n). But the search to find if an item is common between both lists is O(n^2) because of the 2 while structures used. The space is O(n), where n is the size of the list for intersection. 
