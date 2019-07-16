@@ -1,5 +1,2 @@
-The double linked list called cache_storage is used, with a limit set to 5 for this problem. 
 
-The LRU_Cache is a Dict, where key and value are stored. The value of the dict points to the location of the Linked List. Dict provides O(1) look up. Its contents point to the node in the cache according to that FIFO priority. Its space complexity is O(n), as in it occupies one unit per addition of an item to the cache. This is more convenient given that the inputs of this problem are Key and Value, rather than using linked list on its own, where searching can be more cumbersome. 
-
-Linked list provides easy way of doing FIFO, dumping LRU easily in case of overfill. Every time an item is added or inserted, it goes directly as the new head, so it's O(1). Space complexity is O(n) because each item in the cache is stored as one item/node on linked list.
+The LRU_Cache is a OrderedDict, where key and value are stored. OrderedDict provides O(1) look up, while the order to which the key and its value are kept in mind because it's an orderedDict. This makes it easier to pop the first item because of its nature. Its space complexity is O(n), as in it occupies one unit per addition of an item to the cache. 
